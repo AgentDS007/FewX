@@ -1,4 +1,5 @@
 # Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved
+import os
 import copy
 import logging
 import numpy as np
@@ -75,9 +76,9 @@ class DatasetMapperWithSupport:
             # support_df
             self.support_on = True
             if self.few_shot:
-                self.support_df = pd.read_pickle("./datasets/coco/10_shot_support_df.pkl")
+                self.support_df = pd.read_pickle(os.getenv("FEWX_HOME") + "/datasets/coco/10_shot_support_df.pkl")
             else:
-                self.support_df = pd.read_pickle("./datasets/coco/train_support_df.pkl")
+                self.support_df = pd.read_pickle(os.getenv("FEWX_HOME") + "/datasets/coco/train_support_df.pkl")
 
             metadata = MetadataCatalog.get('coco_2017_train')
             # unmap the category mapping ids for COCO
